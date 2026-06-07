@@ -1,16 +1,21 @@
 import discord
 import os
 
-client = discord.Client()
+from discord.ext import commands
+from dotenv import load_dotenv
 
+load_dotenv()
 
-@client.event
+intents = discord.Intents().all()
+bot = commands.Bot(command_prefix='', intents=intents)
+
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(bot))
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author.bot:
         return
 
     if message.content.startswith('ping' or 'Ping'):
@@ -34,4 +39,4 @@ async def on_message(message):
     if 'ayaya' in message.content:
         await message.channel.send('ayaya')
 
-client.run(os.getenv('TOKEN'))
+bot.run(os.getenv('TOKEN'))
