@@ -1,6 +1,5 @@
 import discord
 import os
-from keepalive import keep_alive
 
 client = discord.Client()
 
@@ -32,11 +31,7 @@ async def on_message(message):
     if message.content.startswith('%invite'):
         await message.channel.send('https://discord.com/api/oauth2/authorize?client_id=869447771973890058&permissions=0&scope=bot')
 
-    if message.content == ('sussy baka'):
-        await message.channel.send('https://media.discordapp.net/attachments/798464697036046356/871983183678291988/unknown.png?width=713&height=419')
-
     if 'ayaya' in message.content:
         await message.channel.send('ayaya')
 
-keep_alive()
 client.run(os.getenv('TOKEN'))
